@@ -6,12 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400..900&family=Noto+Sans+KR:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
         *{
             margin:0;
             padding:0;
         }
 
     body{
+        font-family: "Noto Sans KR", sans-serif;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -27,6 +30,7 @@
         border:1px solid;
         position: relative;
         overflow: hidden;
+        background-color: #000;
     }
 
     .top{
@@ -50,6 +54,127 @@
         clip-path: polygon(0 0, 100% 0, 100% 25%, 0 95%);
         transform:rotate(180deg) translateY(-50px);
     }
+
+    .center{
+        position: absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        z-index: 3;
+    }
+
+    .center-title{
+        display: block;
+        width: fit-content;
+        margin-inline: auto;
+        color:#FFF;
+        font-weight: 800;
+        padding:4px 7px;
+        box-sizing: border-box;
+        text-transform: uppercase;
+        background-color: #20d3d9;
+        font-size: 1.25rem;
+        z-index: 3;
+        position: relative;
+    }
+
+    .center-text{
+        display: block;
+        width: max-content;
+        margin-inline: auto;
+        box-sizing: border-box;
+        color:#FFF;
+        font-weight: 800;
+        text-transform: uppercase;
+        font-size: .55rem;
+        background-color: #20d3d9;
+        margin-top: 5px;
+        padding: 4px 6px;
+        z-index: 3;
+        position: relative;
+    }
+
+    .greenup{
+        position: absolute;
+        top:30px;
+        right:30px;
+        width: 100px;
+    }
+
+    .topleft{
+        position: absolute;
+        top:30px;
+        left:30px;
+        text-align: right;
+        color:#FFF;
+        z-index: 3;
+    }
+
+    .topleft > span{
+        display: block;
+        font-size: .8rem;
+        line-height: 1.25;
+    }
+
+    .topleft > span span{
+        font-weight: 800;
+        text-transform: uppercase;
+        font-size: 1.25rem;
+    }
+
+    .bottomright{
+        position: absolute;
+        bottom:30px;
+        right:30px;
+        color:#FFF;
+        z-index: 3;
+    }
+
+    .bottomright > span{
+        display: block;
+        font-size: .8rem;
+        line-height: 1.25;
+    }
+
+    .bottomright > span span{
+        font-weight: 800;
+        text-transform: uppercase;
+        font-size: 1.25rem;
+    }
+
+    .bottomright > span:last-child{
+        margin-left: 13px;
+    }
+
+    .logo{
+        width: 56px;
+        padding-block: 0px;
+        padding-inline: 4px;
+        position: absolute;
+        bottom:30px;
+        left: 30px;
+        background-color: #FFF;
+        border-radius: 35px;
+    }
+
+    .codant{
+        width: 100%;
+        position: absolute;
+        right:0;
+        top:0;
+        transform: scale(1.95) translateX(39%) translateY(0%) rotate(-35deg);
+        opacity: .5;
+        z-index:2;
+    }
+
+    .wtext{
+        font-size: .9rem;
+        display: flex;
+        gap:5px;
+        align-items: center;
+    }
+
     </style>
 </head>
 <body>
@@ -57,35 +182,61 @@
     <div class="content">
         <img src="" id="top" class="top">
         <img src="" id="bottom" class="bottom">
+        <div class="center">
+            <span class="center-title">On depollue</span>
+            <span class="center-text">Pour protéger la santé des populations</span>
+        </div>
+        <img src="greenup.png" class="greenup" />
+        <span class="topleft"><span>en <span>France</span></span> <span>avec <strong>Thomas</strong></span></span>
+        <span class="bottomright"><span>d'<span>Espagne</span></span> <span>avec <strong>Clarisse</strong></span></span>
+        <img src="veolia.png" class="logo" />
+        <img src="codant.png" class="codant" />
     </div>
 
     <div>
         <input type="file" id="topImageInput" accept="image/*"><br /><br />
-        <input type="file" id="bottomImageInput" accept="image/*">
+        <input type="file" id="bottomImageInput" accept="image/*"><br><br>
+        <span class="wtext">
+            <input type="checkbox" id="with" /> Avec codant
+        </span>
     </div>
 
     <script>
-document.getElementById("topImageInput").addEventListener("change", function (event) {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-            document.getElementById("top").src = e.target.result;
-        };
-        reader.readAsDataURL(file);
-    }
-});
+        document.getElementById("topImageInput").addEventListener("change", function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById("top").src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
 
-document.getElementById("bottomImageInput").addEventListener("change", function (event) {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-            document.getElementById("bottom").src = e.target.result;
-        };
-        reader.readAsDataURL(file);
-    }
-});
+        document.getElementById("bottomImageInput").addEventListener("change", function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById("bottom").src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        const codantElement = document.querySelector(".codant");
+        const withCheckbox = document.getElementById("with");
+
+        withCheckbox.addEventListener("change", function () {
+            if (withCheckbox.checked) {
+                codantElement.style.display = "block"; // Affiche codant
+            } else {
+                codantElement.style.display = "none"; // Masque codant
+            }
+        });
+
+        // Masquer codant par défaut
+        codantElement.style.display = "none";
     </script>
     
 </body>
